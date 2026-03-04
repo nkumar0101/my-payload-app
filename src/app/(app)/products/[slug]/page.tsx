@@ -10,6 +10,7 @@ import { draftMode } from 'next/headers'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import React, { Suspense } from 'react'
+import { Reviews } from '@/components/product/Reviews'
 import { Button } from '@/components/ui/button'
 import { ChevronLeftIcon } from 'lucide-react'
 import { Metadata } from 'next'
@@ -140,6 +141,8 @@ export default async function ProductPage({ params }: Args) {
           </div>
         </div>
       </div>
+
+      <Reviews productId={product.id} />
 
       {product.layout?.length ? <RenderBlocks blocks={product.layout} /> : <></>}
 
