@@ -20,6 +20,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Create .env file
+        run: |
+          cat <<EOF > .env
+          DATABASE_URL=file:./my-payload-app.db
+          PAYLOAD_SECRET=ci-test-secret-key
+          NEXT_PUBLIC_SERVER_URL=http://localhost:3000
+          EOF
+
       - uses: skyramp/testbot@v0.2.0
         with:
           skyramp_license_file: ${{ secrets.SKYRAMP_LICENSE }}
