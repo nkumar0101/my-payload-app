@@ -42,7 +42,7 @@ export const mockAdapter = (): PaymentAdapter => ({
     })
 
     const transaction = await payload.create({
-      collection: transactionsSlug,
+      collection: transactionsSlug as any,
       data: {
         ...(req.user ? { customer: req.user.id } : { customerEmail }),
         amount: cart.subtotal || 0,
@@ -78,7 +78,7 @@ export const mockAdapter = (): PaymentAdapter => ({
     }
 
     const transaction = await payload.findByID({
-      collection: transactionsSlug,
+      collection: transactionsSlug as any,
       id: mockTransactionID,
     })
 
@@ -87,7 +87,7 @@ export const mockAdapter = (): PaymentAdapter => ({
     }
 
     const order = await payload.create({
-      collection: ordersSlug,
+      collection: ordersSlug as any,
       data: {
         amount: transaction.amount,
         currency: transaction.currency,
@@ -104,13 +104,13 @@ export const mockAdapter = (): PaymentAdapter => ({
     const timestamp = new Date().toISOString()
     await payload.update({
       id: transaction.cart as string,
-      collection: cartsSlug,
+      collection: cartsSlug as any,
       data: { purchasedAt: timestamp },
     })
 
     await payload.update({
       id: transaction.id,
-      collection: transactionsSlug,
+      collection: transactionsSlug as any,
       data: {
         order: order.id,
         status: 'succeeded',
