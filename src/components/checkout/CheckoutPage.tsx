@@ -196,7 +196,7 @@ export const CheckoutPage: React.FC = () => {
               actions={
                 <Button
                   variant={'outline'}
-                  disabled={Boolean(paymentData)}
+                  disabled={isProcessingPayment}
                   onClick={(e) => {
                     e.preventDefault()
                     setBillingAddress(undefined)
@@ -224,7 +224,7 @@ export const CheckoutPage: React.FC = () => {
           <Checkbox
             id="shippingTheSameAsBilling"
             checked={billingAddressSameAsShipping}
-            disabled={Boolean(paymentData || (!user && (!email || Boolean(emailEditable))))}
+            disabled={Boolean(isProcessingPayment || (!user && (!email || Boolean(emailEditable))))}
             onCheckedChange={(state) => {
               setBillingAddressSameAsShipping(state as boolean)
             }}
@@ -240,7 +240,7 @@ export const CheckoutPage: React.FC = () => {
                   actions={
                     <Button
                       variant={'outline'}
-                      disabled={Boolean(paymentData)}
+                      disabled={isProcessingPayment}
                       onClick={(e) => {
                         e.preventDefault()
                         setShippingAddress(undefined)
@@ -310,14 +310,14 @@ export const CheckoutPage: React.FC = () => {
               if (isVariant) {
                 price = variant?.priceInUSD
 
-                const imageVariant = product.gallery?.find((item) => {
+                const imageVariant = product.gallery?.find((item: any) => {
                   if (!item.variantOption) return false
                   const variantOptionID =
                     typeof item.variantOption === 'object'
                       ? item.variantOption.id
                       : item.variantOption
 
-                  const hasMatch = variant?.options?.some((option) => {
+                  const hasMatch = variant?.options?.some((option: any) => {
                     if (typeof option === 'object') return option.id === variantOptionID
                     else return option === variantOptionID
                   })
@@ -345,7 +345,7 @@ export const CheckoutPage: React.FC = () => {
                       {variant && typeof variant === 'object' && (
                         <p className="text-sm font-mono text-primary/50 tracking-widest">
                           {variant.options
-                            ?.map((option) => {
+                            ?.map((option: any) => {
                               if (typeof option === 'object') return option.label
                               return null
                             })
