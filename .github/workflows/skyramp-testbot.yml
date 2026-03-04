@@ -20,8 +20,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: skyramp/testbot@v0.0.1
+      - uses: skyramp/testbot@v0.2.0
         with:
           skyramp_license_file: ${{ secrets.SKYRAMP_LICENSE }}
-          cursor_api_key: ${{ secrets.CURSOR_API_KEY }}
-          enable_debug: 'true'
+          anthropic_api_key: ${{ secrets.SKYRAMP_TESTBOT_API_KEY }}
