@@ -991,10 +991,9 @@ export interface Transaction {
         id?: string | null;
       }[]
     | null;
-  paymentMethod?: 'stripe' | null;
-  stripe?: {
-    customerID?: string | null;
-    paymentIntentID?: string | null;
+  paymentMethod?: 'mock' | null;
+  mock?: {
+    transactionToken?: string | null;
   };
   billingAddress?: {
     title?: string | null;
@@ -1798,11 +1797,10 @@ export interface TransactionsSelect<T extends boolean = true> {
         id?: T;
       };
   paymentMethod?: T;
-  stripe?:
+  mock?:
     | T
     | {
-        customerID?: T;
-        paymentIntentID?: T;
+        transactionToken?: T;
       };
   billingAddress?:
     | T

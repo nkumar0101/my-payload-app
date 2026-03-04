@@ -80,7 +80,6 @@ export const ProductsCollection: CollectionOverride = ({ defaultCollection }) =>
             {
               name: 'gallery',
               type: 'array',
-              minRows: 1,
               fields: [
                 {
                   name: 'image',
