@@ -24,3 +24,5 @@ jobs:
         with:
           skyramp_license_file: ${{ secrets.SKYRAMP_LICENSE }}
           anthropic_api_key: ${{ secrets.SKYRAMP_TESTBOT_API_KEY }}
+          service_startup_command: 'pnpm install && pnpm build && pnpm start &'
+          test_directory: 'tests'
