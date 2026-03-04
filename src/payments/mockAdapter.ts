@@ -80,6 +80,7 @@ export const mockAdapter = (): PaymentAdapter => ({
     const transaction = await payload.findByID({
       collection: transactionsSlug as any,
       id: mockTransactionID,
+      depth: 0,
     })
 
     if (!transaction) {
@@ -101,9 +102,10 @@ export const mockAdapter = (): PaymentAdapter => ({
       },
     })
 
+    const cartID = typeof transaction.cart === 'object' ? (transaction.cart as any).id : transaction.cart
     const timestamp = new Date().toISOString()
     await payload.update({
-      id: transaction.cart as string,
+      id: cartID,
       collection: cartsSlug as any,
       data: { purchasedAt: timestamp },
     })
