@@ -16,16 +16,22 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Start PostgreSQL
+        run: |
+          sudo systemctl start postgresql
+          sudo -u postgres psql -c "CREATE USER payload WITH PASSWORD 'payload';"
+          sudo -u postgres psql -c "CREATE DATABASE payload OWNER payload;"
 
       - name: Create .env file
         run: |
           cat <<EOF > .env
-          DATABASE_URL=file:./my-payload-app.db
+          DATABASE_URL=postgresql://payload:payload@localhost:5432/payload
           PAYLOAD_SECRET=ci-test-secret-key
-          NEXT_PUBLIC_SERVER_URL=http://localhost:3000
+          NEXT_PUBLIC_SERVER_URL=https://my-payload-app.vercel.app
           EOF
 
       - uses: skyramp/testbot@v0.2.0
