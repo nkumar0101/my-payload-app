@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8000\" next build",
+    "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8000\" payload migrate && next build",
     "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
     "dev:prod": "cross-env NODE_OPTIONS=--no-deprecation rm -rf .next && pnpm build && pnpm start",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
@@ -31,6 +31,7 @@
     "@payloadcms/plugin-form-builder": "3.78.0",
     "@payloadcms/plugin-seo": "3.78.0",
     "@payloadcms/richtext-lexical": "3.78.0",
+    "@payloadcms/storage-vercel-blob": "3.78.0",
     "@payloadcms/translations": "3.78.0",
     "@payloadcms/ui": "3.78.0",
     "@radix-ui/react-accordion": "1.2.11",
